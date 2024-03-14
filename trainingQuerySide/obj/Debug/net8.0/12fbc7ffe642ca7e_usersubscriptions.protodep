@@ -1,0 +1,4 @@
+obj\Debug\net8.0\Protos/Usersubscriptions.cs \
+obj\Debug\net8.0\Protos/UsersubscriptionsGrpc.cs: C:/Users/LENOVO/.nuget/packages/grpc.tools/2.57.0/build/native/include/google/protobuf/wrappers.proto\
+ C:/Users/LENOVO/.nuget/packages/grpc.tools/2.57.0/build/native/include/google/protobuf/timestamp.proto\
+ Protos/usersubscriptions.proto

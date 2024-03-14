@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+option csharp_namespace = "trainingQuerySide";
+
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+package usersubscriptions.v1;
+ 
+service UserSubscriptions {
+  rpc GetPendingInvitations (GetPendingInvitaionsRequest) returns (GetPendingInvitationsResponse);
+  rpc GetMembersUnderSubscription (GetMembersUnderSubscriptionRequest) returns (GetMembersUnderSubscriptionResponse);
+  rpc GetPendingInvitaionsThatMemberRecieved  (GetPendingInvitaionsThatMemberRecievedRequest) returns (GetPendingInvitaionsThatMemberRecievedResponse);
+  rpc GetSubscriptionsThatMemberJoined  (GetSubscriptionsThatMemberJoinedRequest) returns (GetSubscriptionsThatMemberJoinedResponse);
+}
+
+// Query 1
+ 
+message GetPendingInvitaionsRequest {
+  string user_id = 1;
+   google.protobuf.Int32Value page = 2;
+  google.protobuf.Int32Value page_size = 3;
+}
+
+message PendingInvitation {
+	string account_id = 1;
+	string subscription_id = 2;
+	string member_id = 3;
+}
+
+message GetPendingInvitationsResponse {
+	repeated PendingInvitation Invitations = 1;
+	int32 page = 2;
+  int32 page_size = 3;
+  int32 total_results = 4;
+}
+
+ // Query 2
+message GetMembersUnderSubscriptionRequest {
+  string subscription_id = 1;
+}
+
+message MemberUnderSubscription {
+  string member_id = 1;
+}
+
+message GetMembersUnderSubscriptionResponse {
+  string subscription_id = 1;
+  string user_id = 2; // owner
+  repeated MemberUnderSubscription memberundersubscription = 3;
+}
+
+// Query 3
+message GetPendingInvitaionsThatMemberRecievedRequest {
+	string member_id = 1;
+}
+
+message  InvitaionThatMemberRecieved {
+	string subscription_id = 1;
+	 string user_id = 2;
+}
+
+message GetPendingInvitaionsThatMemberRecievedResponse {
+	 repeated InvitaionThatMemberRecieved invitationthatmemberrecieved = 1;
+}
+
+// Query 4 
+message GetSubscriptionsThatMemberJoinedRequest {
+	string member_id = 1;
+
+}
+message SubscriptionThatMemberJoined {
+	string subscription_id = 1;
+	string account_id = 2;
+	string user_id = 3;
+}
+
+message GetSubscriptionsThatMemberJoinedResponse {
+	repeated SubscriptionThatMemberJoined subscriptionthatmemberjoined = 1;
+}
