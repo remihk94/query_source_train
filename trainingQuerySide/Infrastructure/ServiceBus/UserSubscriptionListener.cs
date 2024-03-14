@@ -6,7 +6,7 @@ using trainingQuerySide.EventHandlers.MemberOut;
 
 namespace trainingQuerySide.Infrastructure.ServiceBus
 {
-    // test commit 
+    // test commit  .....
     public class UserSubscriptionListener : IHostedService
     {
         private readonly ServiceBusSessionProcessor _processor;
